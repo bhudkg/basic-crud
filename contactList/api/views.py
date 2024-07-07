@@ -15,16 +15,23 @@ def contact_view(request):
 
 @api_view(['POST'])
 def update_contact_view(request):
-    serializer = ContactSerializer(data=request.POST)
+    serializer = ContactSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
     
 @api_view(['PUT'])
-def modify_contact(request, pk):
-    query = Contact.objects.filter(id=pk)
+def modify_contact(request, id):
+    query = Contact.objects.get(id=id)
     serializer = ContactSerializer(query, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
+    return Response(serializer.errors)
+
+@api_view(['DELETE'])
+def delete_contact(request, id):
+    query = Contact.objects.get(id=id)
+    query.delete()
+    return Response("message: Record has been deleted.")
 
