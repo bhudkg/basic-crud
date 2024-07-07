@@ -19,3 +19,12 @@ def update_contact_view(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
+    
+@api_view(['PUT'])
+def modify_contact(request, pk):
+    query = Contact.objects.filter(id=pk)
+    serializer = ContactSerializer(query, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+

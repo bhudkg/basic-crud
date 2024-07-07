@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',contact_view, name="contact_view"),
     path('api/post/', update_contact_view, name='update_api'),
+    path('api/update/<int:pk>', modify_contact, name="modify"),
+
 ]
