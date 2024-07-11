@@ -20,9 +20,9 @@ from api.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/',contact_view, name="contact_view"),
-    path('api/post/', update_contact_view, name='update_api'),
-    path('api/update/<int:id>', modify_contact, name="modify"),
-    path('api/delete/<int:id>', delete_contact, name="delete"),
+    path('api/',ContactView.as_view(), name="contact_view"),
+    path('api/post/', ContactView.as_view(), name='update_api'),
+    path('api/update/<int:id>', ContactView.as_view(), name="modify"),
+    path('api/delete/<int:id>', ContactView.as_view(), name="delete"),
 
 ]
