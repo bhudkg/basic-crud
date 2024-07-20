@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from api.views import *
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +25,8 @@ urlpatterns = [
     path('api/post/', ContactView.as_view(), name='update_api'),
     path('api/update/<int:id>', ContactView.as_view(), name="modify"),
     path('api/delete/<int:id>', ContactView.as_view(), name="delete"),
+    #for login to access the vdi
+    path('api/login', obtain_auth_token, name="login"),
+    path('api/logout', logout, name="logout")
 
 ]

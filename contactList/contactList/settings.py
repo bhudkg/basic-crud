@@ -130,5 +130,15 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         # other authentication classes...
     ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        # other authentication classes...
+    ),
     # other DRF settings...
 }
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+AUTH_USER_MODEL = 'auth.User' 
